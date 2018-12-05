@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: smsf-sample-12
+
+smsf:
+  cache:
+    redis-cache:
+      sample:
+        duration: 10
+ data:
+                      jdbc:
+                        connections:
+                          default:
+                            url: jdbc:mysql://${smsf.data.database1.url}/demo?useUnicode=true&characterEncoding=utf-8
+                            username: ${smsf.data.database1.username}
+                            password: ${smsf.data.database1.password}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+
+<generatorConfiguration>
+	<context id="MYSQLTables" targetRuntime="Mybatis3"
+		defaultModelType="flat">
+		<plugin type="com.accenture.smsf.framework.mybatis.generator.plugin.LogicalDeletePlugin">
+			<property name="logicalDeleteColumn" value="is_deleted"/>
+			<!-- 逻辑删除常量名称 -->
+			<property name="logicalDeleteValue" value="1"/>
+			<!-- 逻辑删除常量（未删除）名称 -->
+			<property name="logicalUnDeleteValue" value="0"/>
+		</plugin>
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+
+		<!--数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.237.161.213:3306/demo" userId="user_dev"
+			password="Zaq_2wsx">
+		</jdbcConnection>
+		<!--默认false Java type resolver will always use java.math.BigDecimal if 
+			the database column is of type DECIMAL or NUMERIC. -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.accenture.smsf.sample.core.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+			<property name="rootClass" value="com.accenture.smsf.framework.mybatis.core.BaseEntity" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="mappings/authority"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.accenture.smsf.sample.core.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 -->
+		<table tableName="t_demo" domainObjectName="Group" />
+	</context>
+</generatorConfiguration>
